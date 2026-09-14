@@ -1,0 +1,209 @@
+{
+  "info": {
+    "name": "HustleHub+ Part 1",
+    "_postman_id": "hustlehub-part1",
+    "description": "Auth endpoint tests for HustleHub+ Part 1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://localhost:3000" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Register - Success",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/auth/register",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Alice Smith\", \"email\": \"alice@example.com\", \"password\": \"Password1\", \"role\": \"freelancer\"}"
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "pm.test('Status 201', () => pm.response.to.have.status(201));",
+            "pm.test('Has user object', () => pm.expect(pm.response.json().user).to.be.an('object'));",
+            "pm.test('No passwordHash exposed', () => pm.expect(pm.response.json().user.passwordHash).to.be.undefined);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Register - Duplicate Email (409)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/auth/register",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Alice Smith\", \"email\": \"alice@example.com\", \"password\": \"Password1\"}"
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": ["pm.test('Status 409', () => pm.response.to.have.status(409));"]
+        }
+      }]
+    },
+    {
+      "name": "Register - Invalid Email (400)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/auth/register",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Bob\", \"email\": \"not-an-email\", \"password\": \"Password1\"}"
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": ["pm.test('Status 400', () => pm.response.to.have.status(400));"]
+        }
+      }]
+    },
+    {
+      "name": "Register - Weak Password (400)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/auth/register",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Bob\", \"email\": \"bob@example.com\", \"password\": \"weak\"}"
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": ["pm.test('Status 400', () => pm.response.to.have.status(400));"]
+        }
+      }]
+    },
+    {
+      "name": "Login - Success",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/auth/login",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"alice@example.com\", \"password\": \"Password1\"}"
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Has token', () => pm.expect(pm.response.json().token).to.be.a('string'));",
+            "pm.collectionVariables.set('token', pm.response.json().token);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Login - Wrong Password (401)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/auth/login",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"alice@example.com\", \"password\": \"WrongPass1\"}"
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "pm.test('Status 401', () => pm.response.to.have.status(401));",
+            "pm.test('No stack trace', () => pm.expect(pm.response.text()).to.not.include('at '));"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Login - Unknown Email (401)",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/auth/login",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"nobody@example.com\", \"password\": \"Password1\"}"
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": ["pm.test('Status 401', () => pm.response.to.have.status(401));"]
+        }
+      }]
+    },
+    {
+      "name": "Profile - Authenticated (200)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/auth/profile",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }]
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": [
+            "pm.test('Status 200', () => pm.response.to.have.status(200));",
+            "pm.test('Has email', () => pm.expect(pm.response.json().email).to.be.a('string'));",
+            "pm.test('No passwordHash', () => pm.expect(pm.response.json().passwordHash).to.be.undefined);"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "Profile - No Token (401)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/auth/profile"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": ["pm.test('Status 401', () => pm.response.to.have.status(401));"]
+        }
+      }]
+    },
+    {
+      "name": "Profile - Invalid Token (401)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/auth/profile",
+        "header": [{ "key": "Authorization", "value": "Bearer notavalidtoken" }]
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": ["pm.test('Status 401', () => pm.response.to.have.status(401));"]
+        }
+      }]
+    },
+    {
+      "name": "Unknown Route (404)",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/nonexistent"
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "exec": ["pm.test('Status 404', () => pm.response.to.have.status(404));"]
+        }
+      }]
+    }
+  ]
+}
