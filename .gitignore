@@ -1,4 +1,11 @@
 node_modules/
 .env
-backend/certs/key.pem
-backend/certs/cert.pem
+.env.*
+!.env.example
+backend/logs/*.log
+backend/data/users.json
+dist/
+.DS_Store
+Thumbs.db
+coverage/
+.nyc_output/
