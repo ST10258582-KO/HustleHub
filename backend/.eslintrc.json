@@ -1,0 +1,10 @@
+{
+  "env": { "node": true, "es2022": true },
+  "plugins": ["security"],
+  "extends": ["eslint:recommended", "plugin:security/recommended-legacy"],
+  "parserOptions": { "ecmaVersion": 2022, "sourceType": "module" },
+  "rules": {
+    "security/detect-object-injection": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
+}
