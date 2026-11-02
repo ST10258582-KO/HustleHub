@@ -1,0 +1,32 @@
+services:
+  mongodb:
+    image: mongo:8
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017:27017"
+
+  backend:
+    build: ./backend
+    ports:
+      - "3443:3443"
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/hustlehub
+      USE_MONGO: "true"
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in your shell or a root .env file}
+    depends_on:
+      - mongodb
+    volumes:
+      - backend-logs:/app/logs
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
+  backend-logs:
