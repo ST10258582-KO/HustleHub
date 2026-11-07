@@ -7,6 +7,7 @@ import Booking from '../models/Booking.js';
 import Transaction from '../models/Transaction.js';
 import logger from '../utils/logger.js';
 
+/** @route POST /api/bookings */
 export async function createBooking(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty() || !mongoose.isValidObjectId(req.body.gigId)) {
@@ -47,6 +48,7 @@ export async function createBooking(req, res) {
   }
 }
 
+/** @route GET /api/bookings/mine */
 export async function myBookings(req, res) {
   const bookings = await Booking.find({
     $or: [{ clientId: req.user.sub }, { freelancerId: req.user.sub }],
@@ -54,6 +56,7 @@ export async function myBookings(req, res) {
   res.json({ bookings });
 }
 
+/** @route GET /api/bookings/finance */
 export async function myFinance(req, res) {
   const transactions = await Transaction.find({ freelancerId: req.user.sub }).lean();
   const totalIncome = transactions.reduce((sum, t) => sum + t.amount, 0);
