@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+
 import crypto from 'crypto';
 import { validationResult } from 'express-validator';
 import { readUsers, writeUsers } from '../utils/store.js';
@@ -31,6 +32,7 @@ function publicUser(user) {
   return { id: user.id, name: user.name, email: user.email, role: user.role };
 }
 
+/** @route POST /api/auth/register */
 export async function register(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(400).json({ error: 'Invalid input.', details: errors.array().map(e => e.msg) });
@@ -55,6 +57,7 @@ export async function register(req, res) {
   res.status(201).json({ message: 'Registration successful.', user: publicUser(user) });
 }
 
+/** @route POST /api/auth/login */
 export async function login(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(400).json({ error: 'Invalid input.', details: errors.array().map(e => e.msg) });
@@ -92,6 +95,7 @@ export async function login(req, res) {
   res.json({ message: 'Login successful.', token: createToken(user), user: publicUser(user) });
 }
 
+/** @route GET /api/auth/me */
 export async function me(req, res) {
   if (process.env.USE_MONGO === 'true') {
     const user = await User.findById(req.user.sub).select('name email role').lean();
