@@ -40,7 +40,7 @@ export async function createBooking(req, res) {
       requestId: req.id,
     });
 
-    res.status(201).json({ message: 'Booking confirmed. Payment is simulated.', booking, transaction });
+    res.status(201).json({ message: 'Booking confirmed. Payment is simulated (Part 3 POE demo).', booking, transaction });
   } catch (err) {
     logger.error('Booking creation failed', { message: err.message, clientId: req.user.sub, gigId: req.body.gigId, requestId: req.id });
     res.status(500).json({ error: 'Booking could not be completed. No charge was applied.' });
