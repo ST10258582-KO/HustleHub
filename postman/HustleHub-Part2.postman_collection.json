@@ -4,15 +4,51 @@
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    { "key": "baseUrl",         "value": "https://localhost:3443", "type": "string" },
-    { "key": "freelancerEmail", "value": "",                       "type": "string" },
-    { "key": "clientEmail",     "value": "",                       "type": "string" },
-    { "key": "freelancerToken", "value": "",                       "type": "string" },
-    { "key": "clientToken",     "value": "",                       "type": "string" },
-    { "key": "freelancerId",    "value": "",                       "type": "string" },
-    { "key": "clientId",        "value": "",                       "type": "string" },
-    { "key": "gigId",           "value": "",                       "type": "string" },
-    { "key": "bookingId",       "value": "",                       "type": "string" }
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:3443",
+      "type": "string"
+    },
+    {
+      "key": "freelancerEmail",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "clientEmail",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "freelancerToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "clientToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "freelancerId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "clientId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "gigId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "bookingId",
+      "value": "",
+      "type": "string"
+    }
   ],
   "item": [
     {
@@ -47,17 +83,30 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"name\":\"Test Freelancer\",\"email\":\"{{freelancerEmail}}\",\"password\":\"SecurePass123!\",\"role\":\"freelancer\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/auth/register",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "register"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
             }
           }
         },
@@ -82,17 +131,30 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"email\":\"{{freelancerEmail}}\",\"password\":\"SecurePass123!\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/auth/login",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           }
         },
@@ -122,17 +184,30 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"name\":\"Test Client\",\"email\":\"{{clientEmail}}\",\"password\":\"SecurePass123!\",\"role\":\"client\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/auth/register",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "register"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
             }
           }
         },
@@ -156,17 +231,30 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"email\":\"{{clientEmail}}\",\"password\":\"SecurePass123!\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/auth/login",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           }
         },
@@ -189,12 +277,21 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{freelancerToken}}" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{freelancerToken}}"
+              }
             ],
             "url": {
               "raw": "{{baseUrl}}/api/auth/me",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "me"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
             }
           }
         },
@@ -217,17 +314,30 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"email\":\"{{freelancerEmail}}\",\"password\":\"WrongPassword!\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/auth/login",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "login"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
             }
           }
         },
@@ -249,17 +359,30 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"name\":\"Dup\",\"email\":\"{{freelancerEmail}}\",\"password\":\"SecurePass123!\",\"role\":\"client\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/auth/register",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "register"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
             }
           }
         },
@@ -281,8 +404,14 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/auth/me",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "auth", "me"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
             }
           }
         }
@@ -312,18 +441,33 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
-              { "key": "Content-Type",   "value": "application/json" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{freelancerToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"title\":\"Professional Web Design\",\"description\":\"I will design a modern, responsive website for your business using the latest technologies.\",\"price\":1500}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/gigs",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "gigs"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "gigs"
+              ]
             }
           }
         },
@@ -348,8 +492,13 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/gigs",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "gigs"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "gigs"
+              ]
             }
           }
         },
@@ -374,8 +523,14 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "gigs", "{{gigId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "gigs",
+                "{{gigId}}"
+              ]
             }
           }
         },
@@ -397,18 +552,34 @@
           "request": {
             "method": "PUT",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
-              { "key": "Content-Type",   "value": "application/json" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{freelancerToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"price\":1800}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "gigs", "{{gigId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "gigs",
+                "{{gigId}}"
+              ]
             }
           }
         },
@@ -430,18 +601,33 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{clientToken}}" },
-              { "key": "Content-Type",   "value": "application/json" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"title\":\"Illegal gig\",\"description\":\"This should not work at all ever.\",\"price\":100}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/gigs",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "gigs"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "gigs"
+              ]
             }
           }
         },
@@ -454,9 +640,8 @@
               "script": {
                 "exec": [
                   "pm.test('XSS content rejected or sanitised', () => {",
-                  "  const status = pm.response.status;",
-                  "  pm.expect([400, 201]).to.include(status);",
-                  "  if (status === 201) {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([400, 201]);",
+                  "  if (pm.response.code === 201) {",
                   "    const json = pm.response.json();",
                   "    pm.expect(json.gig.title).to.not.include('<script>');",
                   "  }",
@@ -468,18 +653,33 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
-              { "key": "Content-Type",   "value": "application/json" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{freelancerToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"title\":\"<script>alert('xss')</script>\",\"description\":\"<img src=x onerror=alert(1)>This is a description long enough\",\"price\":100}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/gigs",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "gigs"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "gigs"
+              ]
             }
           }
         }
@@ -509,18 +709,33 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{clientToken}}" },
-              { "key": "Content-Type",   "value": "application/json" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"gigId\":\"{{gigId}}\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/bookings",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "bookings"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings"
+              ]
             }
           }
         },
@@ -533,7 +748,7 @@
               "script": {
                 "exec": [
                   "pm.test('Status is 403 or 400', () => {",
-                  "  pm.expect([400, 403]).to.include(pm.response.status);",
+                  "  pm.expect(pm.response.code).to.be.oneOf([400, 403]);",
                   "});"
                 ]
               }
@@ -542,18 +757,33 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{freelancerToken}}" },
-              { "key": "Content-Type",   "value": "application/json" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{freelancerToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"gigId\":\"{{gigId}}\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/bookings",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "bookings"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings"
+              ]
             }
           }
         },
@@ -576,12 +806,21 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{clientToken}}" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              }
             ],
             "url": {
               "raw": "{{baseUrl}}/api/bookings/mine",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "bookings", "mine"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings",
+                "mine"
+              ]
             }
           }
         },
@@ -608,12 +847,21 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{freelancerToken}}" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{freelancerToken}}"
+              }
             ],
             "url": {
               "raw": "{{baseUrl}}/api/bookings/finance",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "bookings", "finance"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings",
+                "finance"
+              ]
             }
           }
         },
@@ -633,12 +881,21 @@
           "request": {
             "method": "GET",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{clientToken}}" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{clientToken}}"
+              }
             ],
             "url": {
               "raw": "{{baseUrl}}/api/bookings/finance",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "bookings", "finance"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings",
+                "finance"
+              ]
             }
           }
         },
@@ -658,17 +915,29 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
               "raw": "{\"gigId\":\"{{gigId}}\"}",
-              "options": { "raw": { "language": "json" } }
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             },
             "url": {
               "raw": "{{baseUrl}}/api/bookings",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "bookings"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "bookings"
+              ]
             }
           }
         }
@@ -695,12 +964,21 @@
           "request": {
             "method": "DELETE",
             "header": [
-              { "key": "Authorization", "value": "Bearer {{freelancerToken}}" }
+              {
+                "key": "Authorization",
+                "value": "Bearer {{freelancerToken}}"
+              }
             ],
             "url": {
               "raw": "{{baseUrl}}/api/gigs/{{gigId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "gigs", "{{gigId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "gigs",
+                "{{gigId}}"
+              ]
             }
           }
         }
