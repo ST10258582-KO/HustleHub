@@ -1,4 +1,5 @@
 import { Router } from 'express';
+// All routes require authentication and admin role
 import { authenticate } from '../middleware/auth.js';
 import { allowRoles } from '../middleware/rbac.js';
 import { listUsers, listAllGigs, listAllBookings, deleteUser, forceDeleteGig } from '../controllers/adminController.js';
