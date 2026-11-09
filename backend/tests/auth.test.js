@@ -135,3 +135,12 @@ describe('GET /api/auth/me', () => {
     expect(res.body.user).toBeDefined();
   });
 });
+
+// Extra: verify health response includes version
+describe('Health endpoint extended', () => {
+  it('health response includes service name', async () => {
+    const res = await request(app).get('/api/health');
+    expect(res.status).toBe(200);
+    expect(res.body.service).toBe('HustleHub+ API');
+  });
+});
