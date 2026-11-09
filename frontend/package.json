@@ -24,5 +24,8 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/user-event": "^14.5.2",
     "jsdom": "latest"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
